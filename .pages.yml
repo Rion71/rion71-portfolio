@@ -1,0 +1,58 @@
+media:
+  input: assets
+  output: assets
+content:
+  - name: portfolio
+    label: Портфолио RION
+    type: file
+    path: content/site.json
+    fields:
+      - name: intro
+        label: Текст первого экрана
+        type: text
+      - name: about
+        label: Об авторе
+        type: text
+      - name: hero
+        label: Фон первого экрана
+        type: image
+      - name: photo_cover
+        label: Обложка Photo
+        type: image
+      - name: design_cover
+        label: Обложка Design
+        type: image
+      - name: art_cover
+        label: Обложка Art
+        type: image
+      - name: custom_cover
+        label: Обложка Custom
+        type: image
+      - name: projects
+        label: Проекты
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Название
+            type: string
+            required: true
+          - name: category
+            label: Папка
+            type: select
+            required: true
+            options:
+              values: [Photo, Design, Art, Custom]
+          - name: description
+            label: Описание
+            type: text
+          - name: cover
+            label: Обложка
+            type: image
+          - name: images
+            label: Фотографии
+            type: image
+            list: true
+          - name: video
+            label: Ссылка на видео
+            type: string
