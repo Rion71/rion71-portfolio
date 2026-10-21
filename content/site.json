@@ -1,10 +1,11 @@
 {
   "intro": "Фотография, дизайн, искусство.\nРазные формы — один авторский взгляд.",
   "about": "Я — Александра Rion. Снимаю, рисую, создаю визуальные миры и вещи руками. Здесь встречаются разные стороны моего творчества.",
-  "hero": "",
+  "hero": "assets/portrait-poster.jpg",
   "photo_cover": "",
   "design_cover": "",
   "art_cover": "",
   "custom_cover": "",
-  "projects": []
+  "projects": [],
+  "hero_video": "assets/portrait-scroll.mp4"
 }

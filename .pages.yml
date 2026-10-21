@@ -14,8 +14,11 @@ content:
         label: Об авторе
         type: text
       - name: hero
-        label: Фон первого экрана
+        label: Статичный кадр первого экрана
         type: image
+      - name: hero_video
+        label: Путь или ссылка на фоновое видео MP4
+        type: string
       - name: photo_cover
         label: Обложка Photo
         type: image

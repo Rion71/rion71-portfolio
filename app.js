@@ -12,7 +12,8 @@ fetch('content/site.json').then(r=>{if(!r.ok)throw Error('content');return r.jso
  data=content;
  if(data.intro)document.querySelector('#intro').textContent=data.intro;
  if(data.about)document.querySelector('#about-text').textContent=data.about;
- if(data.hero)setImage(document.querySelector('.atmosphere'),data.hero);
+ if(data.hero)document.querySelector('#hero-video').poster=safeUrl(data.hero);
+ if(data.hero_video && safeUrl(data.hero_video))document.querySelector('#hero-video').src=safeUrl(data.hero_video);
  document.querySelectorAll('.folder').forEach(el=>setImage(el.querySelector('.thumb-inner'),data[el.dataset.category.toLowerCase()+'_cover']));
 }).catch(()=>{/* Local file preview uses the embedded sample text. */});
 const dialog=document.querySelector('#gallery');
@@ -34,3 +35,37 @@ function openFolder(category){
 document.querySelectorAll('.folder').forEach(el=>el.addEventListener('click',()=>openFolder(el.dataset.category)));
 document.querySelector('.close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
+
+// Seek only after the previous decode completes; rapid direction changes use the latest target.
+(() => {
+ const sequence=document.querySelector('.hero-sequence');
+ const hero=sequence.querySelector('.hero');
+ const video=document.querySelector('#hero-video');
+ const preference=matchMedia('(prefers-reduced-motion: reduce)');
+ let target=0, frame=0;
+ const clamp=n=>Math.max(0,Math.min(1,n));
+ function seek(){
+  if(preference.matches || video.readyState<2 || video.seeking || !Number.isFinite(video.duration))return;
+  const time=target*Math.max(0,video.duration-1/24);
+  if(Math.abs(video.currentTime-time)>1/48)video.currentTime=time;
+ }
+ function render(){
+  frame=0;
+  const span=sequence.offsetHeight-hero.offsetHeight;
+  target=preference.matches?0:clamp(-sequence.getBoundingClientRect().top/Math.max(1,span));
+  const ease=target*target*(3-2*target);
+  const travel=Math.max(0,video.offsetHeight-hero.offsetHeight);
+  hero.style.setProperty('--pan',(ease*travel).toFixed(2));
+  hero.style.setProperty('--copy',1-clamp(target*2.5));
+  seek();
+ }
+ function schedule(){if(!frame)frame=requestAnimationFrame(render);}
+ video.addEventListener('seeked',seek);
+ video.addEventListener('loadeddata',schedule);
+ video.addEventListener('loadedmetadata',schedule);
+ window.addEventListener('scroll',schedule,{passive:true});
+ window.addEventListener('resize',schedule);
+ window.addEventListener('pageshow',schedule);
+ preference.addEventListener('change',()=>{if(preference.matches && video.readyState>=2)video.currentTime=0;schedule();});
+ schedule();
+})();
