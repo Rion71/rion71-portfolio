@@ -1,10 +1,5 @@
 'use strict';
 document.documentElement.classList.add('js');
-const motion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if ('IntersectionObserver' in window && !motion) {
- const observer = new IntersectionObserver(entries => entries.forEach(e => {if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}), {threshold:.1});
- document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-} else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
 let data={projects:[]};
 function safeUrl(value){if(!value)return '';try{const url=new URL(value,document.baseURI);return ['http:','https:','file:'].includes(url.protocol)?url.href:'';}catch{return '';}}
 function setImage(el,value){const url=safeUrl(value);if(url){el.style.backgroundImage=`url(${JSON.stringify(url)})`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';}}
@@ -39,7 +34,8 @@ dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoun
 // Seek only after the previous decode completes; rapid direction changes use the latest target.
 (() => {
  const sequence=document.querySelector('.hero-sequence');
- const hero=sequence.querySelector('.hero');
+ const background=document.querySelector('.atmosphere');
+ const work=document.querySelector('#work');
  const video=document.querySelector('#hero-video');
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
  let target=0, frame=0;
@@ -51,12 +47,14 @@ dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoun
  }
  function render(){
   frame=0;
-  const span=sequence.offsetHeight-hero.offsetHeight;
-  target=preference.matches?0:clamp(-sequence.getBoundingClientRect().top/Math.max(1,span));
+  // Finish the portrait movement when the folders reach the middle of the screen.
+  const viewport=background.offsetHeight;
+  const workTop=window.scrollY+work.getBoundingClientRect().top;
+  const span=Math.max(1,workTop-viewport*.35);
+  target=preference.matches?0:clamp(-sequence.getBoundingClientRect().top/span);
   const ease=target*target*(3-2*target);
-  const travel=Math.max(0,video.offsetHeight-hero.offsetHeight);
-  hero.style.setProperty('--pan',(ease*travel).toFixed(2));
-  hero.style.setProperty('--copy',1-clamp(target*2.5));
+  const travel=Math.max(0,video.offsetHeight-viewport);
+  background.style.setProperty('--pan',(ease*travel).toFixed(2));
   seek();
  }
  function schedule(){if(!frame)frame=requestAnimationFrame(render);}
