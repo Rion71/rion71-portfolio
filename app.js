@@ -2,7 +2,6 @@
 document.documentElement.classList.add('js');
 let data={projects:[]};
 function safeUrl(value){if(!value)return '';try{const url=new URL(value,document.baseURI);return ['http:','https:','file:'].includes(url.protocol)?url.href:'';}catch{return '';}}
-function setImage(el,value){const url=safeUrl(value);if(url){el.style.backgroundImage=`url(${JSON.stringify(url)})`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';}}
 fetch('content/site.json').then(r=>{if(!r.ok)throw Error('content');return r.json();}).then(content=>{
  data=content;
 
@@ -10,7 +9,6 @@ fetch('content/site.json').then(r=>{if(!r.ok)throw Error('content');return r.jso
  if(data.hero && safeUrl(data.hero))document.querySelector('#background').src=safeUrl(data.hero);
  if(data.logo && safeUrl(data.logo))document.querySelectorAll('.logo-image').forEach(el=>el.src=safeUrl(data.logo));
 
- document.querySelectorAll('.project-link').forEach(el=>setImage(el.querySelector('.cover'),data[el.dataset.category.toLowerCase()+'_cover']));
 }).catch(()=>{/* Local file preview uses the embedded sample text. */});
 const dialog=document.querySelector('#gallery');
 function openFolder(category){

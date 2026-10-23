@@ -1,7 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="640" viewBox="0 0 240 640" role="img" aria-labelledby="title desc">
-<title id="title">RION — 02 Light</title>
-<desc id="desc">Editable vector monogram redrawn from the approved visual exploration. White fill on a transparent background.</desc>
-<g id="monogram" fill="#ffffff" fill-rule="evenodd"><path d="M 32,30 L 208,30 L 208,163 L 32,316 L 32,284 L 185,151 L 185,53 L 55,53 L 55,245 L 32,265 Z"/>
-<path d="M 32,341 L 208,188 L 208,609 L 185,609 L 185,267 L 103,338 L 103,308 L 185,237 L 185,219 L 55,352 L 55,609 L 32,609 Z"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="484" viewBox="0 0 170 484" role="img" aria-label="Rion Light"><g fill="#fff"><path d="M0 0H170V104L20 230V484H0V221L150 95V20H20V171L0 188Z"/><path d="M170 146V484H150V191L50 275V249Z"/></g></svg>

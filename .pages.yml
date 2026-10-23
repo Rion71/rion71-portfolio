@@ -21,18 +21,6 @@ content:
         type: select
         options:
           values: [assets/logo-04-gothic.svg, assets/logo-02-light.svg]
-      - name: photo_cover
-        label: Обложка Photo
-        type: image
-      - name: design_cover
-        label: Обложка Design
-        type: image
-      - name: art_cover
-        label: Обложка Art
-        type: image
-      - name: custom_cover
-        label: Обложка Custom
-        type: image
       - name: projects
         label: Проекты
         type: object
