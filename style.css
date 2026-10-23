@@ -10,3 +10,12 @@ dialog{width:min(1100px,92vw);max-height:90svh;overflow:auto;background:#080f18;
 @media(max-width:900px){header{height:90px;padding:20px 6%}nav{gap:22px;font-size:12px;letter-spacing:.06em}.portfolio{padding:10px 7% 40px;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto auto auto;gap:35px 26px}.connections{display:none}.signature{grid-area:1/1/2/3;margin:25px 0 10px}.hero-logo,.logo-glow{height:260px}.identity{grid-area:2/1/3/3;padding:0 0 12px}.identity h1{font-size:14px;letter-spacing:.25em}.photo{grid-area:3/1}.design{grid-area:3/2}.art{grid-area:4/1}.custom{grid-area:4/2}.project-link{gap:17px;justify-self:start}.cover{width:55px}.category{font-size:11px;letter-spacing:.04em}.caption{font-size:9px}.projects{grid-template-columns:1fr}#background{object-position:57% center}}
 @media(max-width:420px){.portfolio{column-gap:18px;padding-left:6%;padding-right:6%}.cover{width:42px}.project-link{gap:13px}.category{font-size:10px}.caption{max-width:75px}.brand img{width:16px;height:46px}nav{gap:18px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}.project-link:hover,.project-link:focus-visible{transform:none}}
+/* A slow, restrained halo matching the central mark. */
+nav a,nav button{transition:color 1.8s cubic-bezier(.22,.61,.36,1),text-shadow 1.8s cubic-bezier(.22,.61,.36,1);text-shadow:0 0 5px #a0ffff00,0 0 18px #20cbcf00}
+@media(hover:hover){nav a:hover,nav button:hover{color:#c9f5f6;text-shadow:0 0 5px #a0ffff80,0 0 18px #20cbcf70}}
+nav a:focus-visible,nav button:focus-visible{color:#c9f5f6;text-shadow:0 0 5px #a0ffff80,0 0 18px #20cbcf70}
+/* Three spare pixels conceal the edges; the original image is never filtered. */
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+.scene{overflow:hidden}
+#background{position:absolute;left:-3px;top:-3px;width:calc(100% + 6px);height:calc(100% + 6px);transform:translate(var(--bg-x,0px),var(--bg-y,0px));transition:transform 1.8s cubic-bezier(.22,.61,.36,1)}
+}

@@ -38,3 +38,23 @@ document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener
  p.textContent=about?(data.about||'Я — Александра Rion. Снимаю, рисую, создаю визуальные миры и вещи руками.'):'Контакты для связи скоро появятся здесь.';
  document.querySelector('#projects').replaceChildren(p);dialog.showModal();
 }));
+
+// One intact image, at most two CSS pixels in the opposite direction.
+(() => {
+ const background = document.querySelector('#background');
+ const motion = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+ function reset() {
+  background.style.removeProperty('--bg-x');
+  background.style.removeProperty('--bg-y');
+ }
+ window.addEventListener('pointermove', event => {
+  if (!motion.matches || event.pointerType !== 'mouse') return;
+  const x = Math.max(-1, Math.min(1, event.clientX / innerWidth * 2 - 1));
+  const y = Math.max(-1, Math.min(1, event.clientY / innerHeight * 2 - 1));
+  background.style.setProperty('--bg-x', `${(-x * 2).toFixed(3)}px`);
+  background.style.setProperty('--bg-y', `${(-y * 2).toFixed(3)}px`);
+ }, {passive:true});
+ document.documentElement.addEventListener('pointerleave', reset);
+ window.addEventListener('blur', reset);
+ motion.addEventListener('change', reset);
+})();
