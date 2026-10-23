@@ -14,11 +14,13 @@ content:
         label: Об авторе
         type: text
       - name: hero
-        label: Статичный кадр первого экрана
+        label: Фон главной страницы
         type: image
-      - name: hero_video
-        label: Путь или ссылка на фоновое видео MP4
-        type: string
+      - name: logo
+        label: Логотип
+        type: select
+        options:
+          values: [assets/logo-04-gothic.svg, assets/logo-02-light.svg]
       - name: photo_cover
         label: Обложка Photo
         type: image

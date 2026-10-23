@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="640" viewBox="0 0 240 640" role="img" aria-labelledby="title desc">
+<title id="title">RION — 04 Gothic</title>
+<desc id="desc">Editable vector monogram redrawn from the approved visual exploration. White fill on a transparent background.</desc>
+<g id="monogram" fill="#ffffff" fill-rule="evenodd"><path d="M 23,25 C 36,29 43,30 53,30 L 190,30 C 201,30 210,28 219,24 C 210,36 208,43 208,54 L 208,152 C 208,161 211,167 218,171 L 24,335 C 30,323 34,312 34,297 L 34,57 C 34,43 31,34 23,25 Z M 56,54 L 56,274 L 184,163 L 184,65 C 184,59 186,55 190,52 L 65,52 C 61,52 58,53 56,54 Z"/>
+<path d="M 219,207 C 211,222 208,233 208,247 L 208,574 C 208,591 211,601 221,612 C 206,606 193,606 179,611 C 186,599 187,588 187,574 L 187,299 L 105,370 L 105,340 L 187,269 L 187,253 L 57,365 L 57,574 C 57,591 60,601 69,608 C 52,607 37,611 22,619 C 31,602 34,591 34,574 L 34,359 C 34,350 31,344 24,340 Z"/></g>
+</svg>
