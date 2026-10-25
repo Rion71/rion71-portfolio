@@ -26,7 +26,7 @@ function openFolder(category){
  }
  dialog.showModal();
 }
-document.querySelectorAll('.project-link').forEach(el=>el.addEventListener('click',()=>openFolder(el.dataset.category)));
+document.querySelectorAll('.project-link[data-category]').forEach(el=>el.addEventListener('click',()=>openFolder(el.dataset.category)));
 document.querySelector('.close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 
@@ -58,3 +58,6 @@ document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener
  window.addEventListener('blur', reset);
  motion.addEventListener('change', reset);
 })();
+
+const infoHash=location.hash.slice(1);
+if(["about","contact"].includes(infoHash))document.querySelector(`[data-info="${infoHash}"]`).click();
