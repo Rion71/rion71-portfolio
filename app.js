@@ -39,7 +39,7 @@ document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener
  document.querySelector('#projects').replaceChildren(p);dialog.showModal();
 }));
 
-// One intact image, at most two CSS pixels in the opposite direction.
+// One intact image, at most four CSS pixels in the opposite direction.
 (() => {
  const background = document.querySelector('#background');
  const motion = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
@@ -51,8 +51,8 @@ document.querySelectorAll('[data-info]').forEach(button=>button.addEventListener
   if (!motion.matches || event.pointerType !== 'mouse') return;
   const x = Math.max(-1, Math.min(1, event.clientX / innerWidth * 2 - 1));
   const y = Math.max(-1, Math.min(1, event.clientY / innerHeight * 2 - 1));
-  background.style.setProperty('--bg-x', `${(-x * 2).toFixed(3)}px`);
-  background.style.setProperty('--bg-y', `${(-y * 2).toFixed(3)}px`);
+  background.style.setProperty('--bg-x', `${(-x * 4).toFixed(3)}px`);
+  background.style.setProperty('--bg-y', `${(-y * 4).toFixed(3)}px`);
  }, {passive:true});
  document.documentElement.addEventListener('pointerleave', reset);
  window.addEventListener('blur', reset);
